@@ -31,10 +31,11 @@ namespace Proiect_IA_V1
 
             int columnNr = int.Parse(senderBtn.Name.Last().ToString());
             if (Manager.heights[columnNr] >= 6) return;
-
-            Manager.grid[5-Manager.heights[columnNr], columnNr] = Manager.playerTurn;
+            int xJustAdded = 5 - Manager.heights[columnNr];
+            int yJustAdded = columnNr;
+            Manager.grid[xJustAdded, yJustAdded] = Manager.playerTurn;
             Manager.heights[columnNr]++;
-
+            Manager.pieces[xJustAdded, yJustAdded] = new Piece(Manager.playerTurn, xJustAdded, yJustAdded);
             //UI stuff
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -49,9 +50,17 @@ namespace Proiect_IA_V1
             pictureBox1.Location = new Point(posX, posY);
             pictureBox1.BringToFront();
             //end UI stuff
-            
+
             Manager.NextTurn();
+            Manager.PrintGrid();
+            Console.WriteLine(Manager.pieces[xJustAdded, yJustAdded]);
+
             labelTurn.Text = $" {Manager.names[Manager.playerTurn]} Turn ";
+
+        }
+
+        private void labelTurn_Click(object sender, EventArgs e)
+        {
 
         }
     }

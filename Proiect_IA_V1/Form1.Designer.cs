@@ -118,6 +118,7 @@ namespace Proiect_IA_V1
             this.labelTurn.TabIndex = 7;
             this.labelTurn.Text = "Player Turn";
             this.labelTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelTurn.Click += new System.EventHandler(this.labelTurn_Click);
             // 
             // Form1
             // 

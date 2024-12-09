@@ -27,11 +27,16 @@ namespace Proiect_IA_V1
         /// </summary>
         public static int[] heights = new int[7];
 
+        /// <summary>
+        /// lista pieseolor din joc
+        /// </summary>
+        public static Piece[,] pieces = new Piece[6, 7];
+
         public static void GameManagerInit()
         {
-            names.Add(0, "Player");
-            names.Add(1, "AI 1");
-            names.Add(2, "AI 2");
+            names.Add(0, "Player 1");
+            names.Add(1, "Player 2");
+            names.Add(2, "AI");
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -66,14 +71,15 @@ namespace Proiect_IA_V1
             return -1;
 
         }
-        private static void PrintGrid()
+
+        public static void PrintGrid()
         {
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
                     if (grid[i, j] == -1)
-                        Console.Write($"X ");
+                        Console.Write($". ");
                     else
                         Console.Write($"{grid[i, j]} ");
 
@@ -92,34 +98,9 @@ namespace Proiect_IA_V1
 
 
         }
-        private static bool CheckColumn(int col)
-        {
-            //for(int 0)
-            return true;
-        }
-        private static bool inRange(int val, bool column = true)
-        {
-            if (column) //verificam daca o valoare e in range pentru coloana
-            {
-                if (val >= 0 && val < 6)
-                    return true;
-                else
-                    return false;
-            }
-            else //verificam daca o valoare e in range pentru rand
-            {
-                if (val >= 0 && val < 7)
-                    return true;
-                else
-                    return false;
-            }
 
-
-
-        }
         public static int NextTurn()
         {
-            PrintGrid();
 
             Console.WriteLine(CheckWin());
             playerTurn++;
