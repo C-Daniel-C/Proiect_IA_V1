@@ -15,28 +15,32 @@ namespace Proiect_IA_V1
       2 = id AI 2
        */
         public static Dictionary<int, string> names = new Dictionary<int, string>();
-        public static int playerTurn = 0;
+        public int playerTurn = 0;
+        public int F = 0;
 
         /// <summary>
         ///  un joc normal are 6 randuri si 7 coloane
         /// </summary>
-        public static int[,] grid = new int[6, 7];
+        public int[,] grid = new int[6, 7];
 
         /// <summary>
         /// vector ce contine inaltimile pentru fiecare coloana
         /// </summary>
-        public static int[] heights = new int[7];
+        public int[] heights = new int[7];
 
         /// <summary>
         /// lista pieseolor din joc
         /// </summary>
-        public static Piece[,] pieces = new Piece[6, 7];
+        public Piece[,] pieces = new Piece[6, 7];
 
-        public static void GameManagerInit()
+        public void GameManagerInit()
         {
-            names.Add(0, "Player 1");
-            names.Add(1, "Player 2");
-            names.Add(2, "AI");
+            if (names.Count == 0)
+            {
+                names.Add(0, "Player");
+                names.Add(1, "AI 1");
+                names.Add(2, "AI 2");
+            }
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -45,9 +49,28 @@ namespace Proiect_IA_V1
                 }
             }
         }
+
+        public Manager(Manager otherObj)
+        {
+            this.playerTurn = otherObj.playerTurn;
+            for (int j = 0; j < 7; j++)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    this.grid[i, j] = otherObj.grid[i, j];
+                    if (otherObj.pieces[i,j] != null)
+                        this.pieces[i, j]= new Piece(otherObj.pieces[i,j].team, i, j, otherObj.grid);
+                }
+                this.heights[j]= otherObj.heights[j];
+            }
+        }
+        public Manager()
+        {
+            GameManagerInit();
+        }
         //TODO check win
         //TODO: make piece class 
-        private static int CheckWin()
+        private string CheckWin()
         {
             int streak = 1;
             for (int i = 1; i < 6; i++)
@@ -59,7 +82,7 @@ namespace Proiect_IA_V1
                         streak++;
                         if (streak == 4)
                         {
-                            return grid[i, j];
+                            return "WINNER " + grid[i, j];
                         }
                     }
                     else
@@ -68,11 +91,11 @@ namespace Proiect_IA_V1
                     }
                 }
             }
-            return -1;
+            return "NO WINNER";
 
         }
 
-        public static void PrintGrid()
+        public void PrintGrid()
         {
             for (int i = 0; i < 6; i++)
             {
@@ -99,7 +122,7 @@ namespace Proiect_IA_V1
 
         }
 
-        public static int NextTurn()
+        public int NextTurn()
         {
 
             Console.WriteLine(CheckWin());
