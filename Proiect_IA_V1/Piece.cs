@@ -107,7 +107,7 @@ namespace Proiect_IA_V1
         }
         public override string ToString()
         {
-            return $"Piece: [{Manager.names[team]}] ({x},{y}) Power: {power}";
+            return $"Piece: [{Board.names[team]}] ({x},{y}) Power: {power}";
         }
     }
 }
