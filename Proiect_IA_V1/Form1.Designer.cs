@@ -29,6 +29,7 @@ namespace Proiect_IA_V1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonCol0 = new System.Windows.Forms.Button();
             this.buttonCol1 = new System.Windows.Forms.Button();
             this.buttonCol2 = new System.Windows.Forms.Button();
@@ -37,6 +38,8 @@ namespace Proiect_IA_V1
             this.buttonCol5 = new System.Windows.Forms.Button();
             this.buttonCol6 = new System.Windows.Forms.Button();
             this.labelTurn = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // buttonCol0
@@ -120,6 +123,16 @@ namespace Proiect_IA_V1
             this.labelTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelTurn.Click += new System.EventHandler(this.labelTurn_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 500;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -150,6 +163,8 @@ namespace Proiect_IA_V1
         private System.Windows.Forms.Button buttonCol2;
         private System.Windows.Forms.Button buttonCol1;
         private System.Windows.Forms.Label labelTurn;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
