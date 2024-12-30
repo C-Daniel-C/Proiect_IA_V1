@@ -125,7 +125,7 @@ namespace Proiect_IA_V1
         public int NextTurn()
         {
 
-            Console.WriteLine(CheckWin());
+            //Console.WriteLine(CheckWin());
             playerTurn++;
             if (playerTurn >= 3) playerTurn = 0;
             return playerTurn;

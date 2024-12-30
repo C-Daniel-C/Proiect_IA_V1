@@ -10,7 +10,7 @@ namespace Proiect_IA_V1
     class Minimax
     {
         private static int MAX_DEPTH = 3;
-        public static Manager Minimax2L(Manager table,int depth,int ai)
+        public static Manager Minimax2L(Manager table, int depth, int ai)
         {
 
             if (depth == MAX_DEPTH)
@@ -27,7 +27,7 @@ namespace Proiect_IA_V1
                     if (table.heights[i] != 6)
                     {
                         Manager newManager = new Manager(table);
-                        var cursorX=5-table.heights[i];
+                        var cursorX = 5 - table.heights[i];
                         newManager.grid[cursorX, i] = table.playerTurn;
                         newManager.pieces[cursorX, i] = new Piece(table.playerTurn, table.heights[i], i, table.grid);
                         newManager.heights[i]++;
@@ -41,7 +41,7 @@ namespace Proiect_IA_V1
                     foreach (Manager move in validMove)
                     {
                         move.NextTurn();
-                        var newBoard = Minimax2L(move, depth + 1,ai);
+                        var newBoard = Minimax2L(move, depth + 1, ai);
                         if (newBoard.F > nextBoard.F)
                         {
                             nextBoard = move;
@@ -55,7 +55,7 @@ namespace Proiect_IA_V1
                     foreach (Manager move in validMove)
                     {
                         move.NextTurn();
-                        var newBoard = Minimax2L(move, depth + 1,ai);
+                        var newBoard = Minimax2L(move, depth + 1, ai);
                         if (nextBoard.F < newBoard.F)
                         {
                             nextBoard.F = newBoard.F;
@@ -68,13 +68,13 @@ namespace Proiect_IA_V1
             }
         }
 
-        public static void EvaluateBoard(Manager board,int ai)
+        public static void EvaluateBoard(Manager board, int ai)
         {
             if (ai == 1)
             {
                 for (int i = 0; i < board.heights.Length; i++)
                 {
-                    var cursorX= 6-board.heights[i];
+                    var cursorX = 6 - board.heights[i];
                     if (board.heights[i] != 0)
                     {
                         if (board.grid[cursorX, i] == 1)
@@ -88,7 +88,7 @@ namespace Proiect_IA_V1
                     }
                 }
             }
-            else if(ai==2)
+            else if (ai == 2)
             {
                 for (int i = 0; i < 6; i++)
                 {
