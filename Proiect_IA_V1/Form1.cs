@@ -109,6 +109,19 @@ namespace Proiect_IA_V1
             pictureBox1.BringToFront();
             //end UI stuff
 
+            if (checkWin(board, board.playerTurn))
+            {
+                stopGame = true;
+                labelTurn.Text = $" {Board.names[board.playerTurn]} won";
+                foreach (Button btn in buttons)
+                {
+                    btn.Enabled = false;
+                }
+                return;
+            }
+
+
+
             board.NextTurn();
             board.PrintGrid();
             Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
@@ -119,6 +132,8 @@ namespace Proiect_IA_V1
             {
                 btn.Enabled = false;
             }
+
+           
             timer1.Start();
 
 
