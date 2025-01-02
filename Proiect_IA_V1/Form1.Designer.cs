@@ -44,71 +44,78 @@ namespace Proiect_IA_V1
             // 
             // buttonCol0
             // 
-            this.buttonCol0.BackColor = System.Drawing.Color.White;
+            this.buttonCol0.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol0.Location = new System.Drawing.Point(149, 121);
             this.buttonCol0.Name = "buttonCol0";
             this.buttonCol0.Size = new System.Drawing.Size(128, 571);
             this.buttonCol0.TabIndex = 0;
+            this.buttonCol0.TabStop = false;
             this.buttonCol0.UseVisualStyleBackColor = false;
             this.buttonCol0.Click += new System.EventHandler(this.AddPiece);
             // 
             // buttonCol1
             // 
-            this.buttonCol1.BackColor = System.Drawing.Color.White;
+            this.buttonCol1.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol1.Location = new System.Drawing.Point(283, 121);
             this.buttonCol1.Name = "buttonCol1";
             this.buttonCol1.Size = new System.Drawing.Size(128, 571);
             this.buttonCol1.TabIndex = 1;
+            this.buttonCol1.TabStop = false;
             this.buttonCol1.UseVisualStyleBackColor = false;
             this.buttonCol1.Click += new System.EventHandler(this.AddPiece);
             // 
             // buttonCol2
             // 
-            this.buttonCol2.BackColor = System.Drawing.Color.White;
+            this.buttonCol2.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol2.Location = new System.Drawing.Point(417, 121);
             this.buttonCol2.Name = "buttonCol2";
             this.buttonCol2.Size = new System.Drawing.Size(128, 571);
             this.buttonCol2.TabIndex = 2;
+            this.buttonCol2.TabStop = false;
             this.buttonCol2.UseVisualStyleBackColor = false;
             this.buttonCol2.Click += new System.EventHandler(this.AddPiece);
             // 
             // buttonCol3
             // 
-            this.buttonCol3.BackColor = System.Drawing.Color.White;
+            this.buttonCol3.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol3.Location = new System.Drawing.Point(551, 121);
             this.buttonCol3.Name = "buttonCol3";
             this.buttonCol3.Size = new System.Drawing.Size(128, 571);
             this.buttonCol3.TabIndex = 3;
+            this.buttonCol3.TabStop = false;
             this.buttonCol3.UseVisualStyleBackColor = false;
             this.buttonCol3.Click += new System.EventHandler(this.AddPiece);
             // 
             // buttonCol4
             // 
-            this.buttonCol4.BackColor = System.Drawing.Color.White;
+            this.buttonCol4.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol4.Location = new System.Drawing.Point(685, 121);
             this.buttonCol4.Name = "buttonCol4";
             this.buttonCol4.Size = new System.Drawing.Size(128, 571);
             this.buttonCol4.TabIndex = 4;
+            this.buttonCol4.TabStop = false;
             this.buttonCol4.UseVisualStyleBackColor = false;
             this.buttonCol4.Click += new System.EventHandler(this.AddPiece);
             // 
             // buttonCol5
             // 
-            this.buttonCol5.BackColor = System.Drawing.Color.White;
+            this.buttonCol5.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol5.Location = new System.Drawing.Point(819, 121);
             this.buttonCol5.Name = "buttonCol5";
             this.buttonCol5.Size = new System.Drawing.Size(128, 571);
             this.buttonCol5.TabIndex = 5;
+            this.buttonCol5.TabStop = false;
             this.buttonCol5.UseVisualStyleBackColor = false;
             this.buttonCol5.Click += new System.EventHandler(this.AddPiece);
             // 
             // buttonCol6
             // 
-            this.buttonCol6.BackColor = System.Drawing.Color.White;
+            this.buttonCol6.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol6.Location = new System.Drawing.Point(953, 121);
             this.buttonCol6.Name = "buttonCol6";
             this.buttonCol6.Size = new System.Drawing.Size(128, 571);
             this.buttonCol6.TabIndex = 6;
+            this.buttonCol6.TabStop = false;
             this.buttonCol6.UseVisualStyleBackColor = false;
             this.buttonCol6.Click += new System.EventHandler(this.AddPiece);
             // 

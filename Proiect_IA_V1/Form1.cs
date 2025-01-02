@@ -15,7 +15,7 @@ namespace Proiect_IA_V1
     {
         List<Bitmap> images;
         List<Button> buttons = new List<Button>();
-        Manager board = new Manager();
+        Board board = new Board();
         public Form1()
         {
             InitializeComponent();
@@ -39,38 +39,30 @@ namespace Proiect_IA_V1
 
 
             board = Minimax.Minimax2L(board, 0, board.playerTurn);
+            int i = board.newPiece.x;
+            int j = board.newPiece.y;
 
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    if (board.grid[i, j] != -1)
-                    {
-
-                        PictureBox pictureBox1 = new PictureBox();
-                        pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                        Bitmap MyImage = images[board.grid[i,j]];
-                        pictureBox1.ClientSize = new Size(50, 50);
-                        pictureBox1.Image = (Image)MyImage;
-                        pictureBox1.BackColor = Color.Transparent;
-                        this.Controls.Add(pictureBox1);
-                        Button senderBtn = buttons[j];
-                        Point btnPos = buttons[j].Location;
-                        int posX = btnPos.X + (senderBtn.Width - 50) / 2;
-                        int posY = btnPos.Y + senderBtn.Height - 50 * (board.heights[j]) - 5;
-                        pictureBox1.Location = new Point(posX, posY);
-                        pictureBox1.BringToFront();
+            PictureBox pictureBox1 = new PictureBox();
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            Bitmap MyImage = images[board.newPiece.team];
+            pictureBox1.ClientSize = new Size(50, 50);
+            pictureBox1.Image = (Image)MyImage;
+            pictureBox1.BackColor = Color.Transparent;
+            this.Controls.Add(pictureBox1);
+            Button senderBtn = buttons[j];
+            Point btnPos = buttons[j].Location;
+            int posX = btnPos.X + (senderBtn.Width - 50) / 2;
+            int posY = btnPos.Y + senderBtn.Height - 50 * (board.heights[j]) - 5;
+            pictureBox1.Location = new Point(posX, posY);
+            pictureBox1.BringToFront();
 
 
-                    }
-                }
-            }
 
             board.NextTurn();
             board.PrintGrid();
             //Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
 
-            labelTurn.Text = $" {Manager.names[board.playerTurn]} Turn ";
+            labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
         }
         private void AddPiece(object sender, EventArgs e)
         {
@@ -110,10 +102,14 @@ namespace Proiect_IA_V1
             board.PrintGrid();
             Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
 
-            labelTurn.Text = $" {Manager.names[board.playerTurn]} Turn ";
+            labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
 
+            foreach (Button btn in buttons)
+            {
+                btn.Enabled = false;
+            }
             timer1.Start();
-     
+
 
         }
 
@@ -124,6 +120,7 @@ namespace Proiect_IA_V1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             ComputeAndRedraw();
             timer2.Start();
             timer1.Stop();
@@ -131,8 +128,13 @@ namespace Proiect_IA_V1
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+
             ComputeAndRedraw();
             timer2.Stop();
+            foreach (Button btn in buttons)
+            {
+                btn.Enabled = true;
+            }
         }
     }
 }

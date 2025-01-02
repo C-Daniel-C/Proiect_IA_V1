@@ -10,7 +10,7 @@ namespace Proiect_IA_V1
     class Minimax
     {
         private static int MAX_DEPTH = 3;
-        public static Manager Minimax2L(Manager table, int depth, int ai)
+        public static Board Minimax2L(Board table, int depth, int ai)
         {
 
             if (depth == MAX_DEPTH)
@@ -20,25 +20,26 @@ namespace Proiect_IA_V1
             }
             else
             {
-                List<Manager> validMove = new List<Manager>();
+                List<Board> validMove = new List<Board>();
 
                 for (int i = 0; i < table.heights.Length; i++)
                 {
                     if (table.heights[i] != 6)
                     {
-                        Manager newManager = new Manager(table);
+                        Board newManager = new Board(table);
                         var cursorX = 5 - table.heights[i];
                         newManager.grid[cursorX, i] = table.playerTurn;
                         newManager.pieces[cursorX, i] = new Piece(table.playerTurn, table.heights[i], i, table.grid);
+                        newManager.newPiece = newManager.pieces[cursorX, i];
                         newManager.heights[i]++;
                         validMove.Add(newManager);
                     }
                 }
-                Manager nextBoard = new Manager();
+                Board nextBoard = new Board();
                 if (depth == 0)
                 {
                     nextBoard.F = -999;
-                    foreach (Manager move in validMove)
+                    foreach (Board move in validMove)
                     {
                         move.NextTurn();
                         var newBoard = Minimax2L(move, depth + 1, ai);
@@ -52,7 +53,7 @@ namespace Proiect_IA_V1
                 else
                 {
                     nextBoard.F = 999;
-                    foreach (Manager move in validMove)
+                    foreach (Board move in validMove)
                     {
                         move.NextTurn();
                         var newBoard = Minimax2L(move, depth + 1, ai);
@@ -68,7 +69,7 @@ namespace Proiect_IA_V1
             }
         }
 
-        public static void EvaluateBoard(Manager board, int ai)
+        public static void EvaluateBoard(Board board, int ai)
         {
             if (ai == 1)
             {
