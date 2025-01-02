@@ -44,16 +44,16 @@ namespace Proiect_IA_V1
                     foreach (Board move in validMove)
                     {
                         move.NextTurn();
-                        var newBoard = Minimax2L(move, depth + 1, ai);
-                        if (newBoard.F > nextBoard.F)
+                        var tryNextBoard = Minimax2L(move, depth + 1, ai);
+                        if (tryNextBoard.F > nextBoard.F)
                         {
                             nextBoard = move;
-                            nextBoard.F = newBoard.F;
+                            nextBoard.F = tryNextBoard.F;
                         }
-                        else if (newBoard.F == nextBoard.F && _rand.Next(100) < 80)
+                        else if (tryNextBoard.F == nextBoard.F && _rand.Next(100) < 80)
                         {
                             nextBoard = move;
-                            nextBoard.F = newBoard.F;
+                            nextBoard.F = tryNextBoard.F;
                         }
                     }
                 }
@@ -63,10 +63,10 @@ namespace Proiect_IA_V1
                     foreach (Board move in validMove)
                     {
                         move.NextTurn();
-                        var newBoard = Minimax2L(move, depth + 1, ai);
-                        if (nextBoard.F > newBoard.F)
+                        var tryNextBoard = Minimax2L(move, depth + 1, ai);
+                        if (nextBoard.F > tryNextBoard.F)
                         {
-                            nextBoard.F = newBoard.F;
+                            nextBoard.F = tryNextBoard.F;
                         }
 
                     }
