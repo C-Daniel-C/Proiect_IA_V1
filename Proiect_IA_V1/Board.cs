@@ -27,6 +27,7 @@ namespace Proiect_IA_V1
         /// vector ce contine inaltimile pentru fiecare coloana
         /// </summary>
         public int[] heights = new int[7];
+        public bool win=false;
 
         /// <summary>
         /// lista pieseolor din joc

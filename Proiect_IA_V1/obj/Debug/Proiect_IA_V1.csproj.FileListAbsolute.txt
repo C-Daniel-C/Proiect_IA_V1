@@ -18,3 +18,13 @@ C:\Users\User\source\repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.c
 C:\Users\User\source\repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.exe
 C:\Users\User\source\repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.pdb
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\bin\Debug\Proiect_IA_V1.exe.config
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\bin\Debug\Proiect_IA_V1.exe
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\bin\Debug\Proiect_IA_V1.pdb
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.csproj.AssemblyReference.cache
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.Form1.resources
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.Properties.Resources.resources
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.csproj.GenerateResource.cache
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.csproj.CoreCompileInputs.cache
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.exe
+C:\Users\Eric\Source\Repos\Proiect_IA_V1\Proiect_IA_V1\obj\Debug\Proiect_IA_V1.pdb

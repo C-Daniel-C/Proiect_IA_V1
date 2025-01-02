@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
+
 namespace Proiect_IA_V1
 {
     class Minimax
     {
         private static int MAX_DEPTH = 3;
+        private static  Random _rand=new Random();
         public static Board Minimax2L(Board table, int depth, int ai)
         {
 
@@ -48,6 +50,11 @@ namespace Proiect_IA_V1
                             nextBoard = move;
                             nextBoard.F = newBoard.F;
                         }
+                        else if(newBoard.F == nextBoard.F && _rand.Next(100) < 80)
+                        {
+                            nextBoard = move;
+                            nextBoard.F = newBoard.F;
+                        }
                     }
                 }
                 else
@@ -57,7 +64,7 @@ namespace Proiect_IA_V1
                     {
                         move.NextTurn();
                         var newBoard = Minimax2L(move, depth + 1, ai);
-                        if (nextBoard.F < newBoard.F)
+                        if (nextBoard.F > newBoard.F)
                         {
                             nextBoard.F = newBoard.F;
                         }
@@ -71,45 +78,134 @@ namespace Proiect_IA_V1
 
         public static void EvaluateBoard(Board board, int ai)
         {
-            if (ai == 1)
-            {
-                for (int i = 0; i < board.heights.Length; i++)
+                // Center Column
+                for(int i = 0; i< 6;i++)
                 {
-                    var cursorX = 6 - board.heights[i];
-                    if (board.heights[i] != 0)
+                    if (board.grid[i,4] == ai)
                     {
-                        if (board.grid[cursorX, i] == 1)
-                        {
-                            board.F += board.pieces[cursorX, i].power;
-                        }
-                        else
-                        {
-                            board.F -= board.pieces[cursorX, i].power;
-                        }
+                        board.F += 3;
                     }
                 }
-            }
-            else if (ai == 2)
-            {
-                for (int i = 0; i < 6; i++)
+
+                // Score Horizontal positions
+                for(int i = 0;i<6;i++)
                 {
-                    for (int j = 0; j < 7; j++)
+                    List<int> row_array = new List<int>();
+                    for(int j=0;j<7;j++)
                     {
-                        var cursorX = 6 - board.heights[i];
-                        if (board.heights[i] != 0)
+                        row_array.Add(board.grid[i,j]);
+                    }
+                    for(int j=0;j<4;j++)
+                    {
+                        List<int> window= new List<int>();
+                        for(int k=j;k<j+4;k++)
                         {
-                            if (board.grid[cursorX, i] == 2)
-                            {
-                                board.F += board.pieces[cursorX, i].power;
-                            }
-                            else
-                            {
-                                board.F -= board.pieces[cursorX, i].power;
-                            }
+                            window.Add(row_array[k]);
                         }
+                        board.F += EvaluateLine(window, ai);
                     }
                 }
+
+                // Score Vertical Positions
+
+                for(int j=0;j<7;j++)
+                {
+                    List<int> column_array=new List<int>();
+                    for(int i=0;i<6;i++)
+                    {
+                        column_array.Add(board.grid[i, j]);
+                    }
+                    for(int i=0;i<3;i++)
+                    {
+                        List<int> window=new List<int>();
+                        for(int k=i;k<i+4;k++)
+                        {
+                            window.Add(column_array[k]);
+                        }
+                        board.F += EvaluateLine(window, ai);
+                    }
+                }
+                // Score positive diagonals
+                for(int i=0;i<3;i++)
+                {
+                    for(int j=0;j<4;j++)
+                    {
+                        List<int> window = new List<int>();
+                        for (int k=0;k<4;k++)
+                        {
+                            window.Add(board.grid[i + k, j + k]);
+                        }
+                        board.F += EvaluateLine(window, ai);
+                    }
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        List<int> window = new List<int>();
+                        for (int k = 0; k < 4; k++)
+                        {
+                            window.Add(board.grid[i + 3 - k, j + k]);
+                        }
+                        board.F += EvaluateLine(window, ai);
+                    }
+                }
+
+
+        }
+        public static int EvaluateLine(List<int> line,int ai)
+        {
+            Dictionary<int,int> enemy_pieces = new Dictionary<int,int>();
+            int my_pieces = 0;
+            int empty = 0;
+            int score = 0;
+            for(int i=0;i<3;i++)
+            {
+                if(i!=ai)
+                {
+                    enemy_pieces.Add(i,0);
+                }
             }
+
+            for (int i = 0; i < line.Count; i++)
+            {
+                if (line[i] == ai)
+                {
+                    my_pieces++;
+                }
+                else if (line[i] == -1)
+                {
+                    empty++;
+                }
+                else
+                {
+                    enemy_pieces[line[i]]++;
+                }
+            }
+
+            if(my_pieces==4)
+            {
+                score += 100;
+                
+            }
+            else if(my_pieces==3 && empty==1)
+            {
+                score += 5;
+            }
+            else if(my_pieces==2 && empty==2)
+            {
+                score += 2;
+            }
+
+            foreach(int i in enemy_pieces.Keys)
+            {
+                if(enemy_pieces[i]==3 && empty==1)
+                {
+                    score -= 4;
+                }
+            }
+            return score;
+            
         }
 
     }

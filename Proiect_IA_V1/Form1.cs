@@ -13,6 +13,7 @@ namespace Proiect_IA_V1
 {
     public partial class Form1 : Form
     {
+        private static bool stopGame = false;
         List<Bitmap> images;
         List<Button> buttons = new List<Button>();
         Board board = new Board();
@@ -56,13 +57,23 @@ namespace Proiect_IA_V1
             pictureBox1.Location = new Point(posX, posY);
             pictureBox1.BringToFront();
 
+            if (checkWin(board, board.playerTurn))
+            {
+                stopGame = true;
+                labelTurn.Text = $" {Board.names[board.playerTurn]} won";
+                foreach (Button btn in buttons)
+                {
+                    btn.Enabled = false;
+                }
+            }
+            else
+            {
+                board.NextTurn();
+                board.PrintGrid();
+                //Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
 
-
-            board.NextTurn();
-            board.PrintGrid();
-            //Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
-
-            labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
+                labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
+            }
         }
         private void AddPiece(object sender, EventArgs e)
         {
@@ -122,7 +133,10 @@ namespace Proiect_IA_V1
         {
             
             ComputeAndRedraw();
-            timer2.Start();
+            if (!stopGame)
+            {
+                timer2.Start();
+            }
             timer1.Stop();
         }
 
@@ -131,10 +145,58 @@ namespace Proiect_IA_V1
 
             ComputeAndRedraw();
             timer2.Stop();
-            foreach (Button btn in buttons)
+            if (!stopGame)
             {
-                btn.Enabled = true;
+                foreach (Button btn in buttons)
+                {
+                    btn.Enabled = true;
+                }
             }
+        }
+        private bool checkWin(Board board,int playerTurn)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    if (board.grid[i, j] == playerTurn && board.grid[i, j + 1] == playerTurn && board.grid[i, j + 2] == playerTurn && board.grid[i, j + 3] == playerTurn)
+                    {
+                        return true;
+                    }
+                }
+            }
+            for (int j = 0; j < 7; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (board.grid[i, j] == playerTurn && board.grid[i+1, j] == playerTurn && board.grid[i+2, j] == playerTurn && board.grid[i+3, j] == playerTurn)
+                    {
+                        return true;
+                    }
+                }
+            }
+            for(int j =0;j<4;j++)
+            {
+                for(int i=0;i<3;i++)
+                {
+                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j+1] == playerTurn && board.grid[i + 2, j+2] == playerTurn && board.grid[i + 3, j+3] == playerTurn)
+                    {
+                        return true;
+                    }
+                }
+            }
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 3; i < 6; i++)
+                {
+                    if (board.grid[i, j] == playerTurn && board.grid[i - 1, j + 1] == playerTurn && board.grid[i - 2, j + 2] == playerTurn && board.grid[i - 3, j + 3] == playerTurn)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

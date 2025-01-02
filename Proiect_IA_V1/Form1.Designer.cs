@@ -45,9 +45,10 @@ namespace Proiect_IA_V1
             // buttonCol0
             // 
             this.buttonCol0.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol0.Location = new System.Drawing.Point(149, 121);
+            this.buttonCol0.Location = new System.Drawing.Point(81, 66);
+            this.buttonCol0.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol0.Name = "buttonCol0";
-            this.buttonCol0.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol0.Size = new System.Drawing.Size(70, 309);
             this.buttonCol0.TabIndex = 0;
             this.buttonCol0.TabStop = false;
             this.buttonCol0.UseVisualStyleBackColor = false;
@@ -56,9 +57,10 @@ namespace Proiect_IA_V1
             // buttonCol1
             // 
             this.buttonCol1.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol1.Location = new System.Drawing.Point(283, 121);
+            this.buttonCol1.Location = new System.Drawing.Point(154, 66);
+            this.buttonCol1.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol1.Name = "buttonCol1";
-            this.buttonCol1.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol1.Size = new System.Drawing.Size(70, 309);
             this.buttonCol1.TabIndex = 1;
             this.buttonCol1.TabStop = false;
             this.buttonCol1.UseVisualStyleBackColor = false;
@@ -67,9 +69,10 @@ namespace Proiect_IA_V1
             // buttonCol2
             // 
             this.buttonCol2.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol2.Location = new System.Drawing.Point(417, 121);
+            this.buttonCol2.Location = new System.Drawing.Point(227, 66);
+            this.buttonCol2.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol2.Name = "buttonCol2";
-            this.buttonCol2.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol2.Size = new System.Drawing.Size(70, 309);
             this.buttonCol2.TabIndex = 2;
             this.buttonCol2.TabStop = false;
             this.buttonCol2.UseVisualStyleBackColor = false;
@@ -78,9 +81,10 @@ namespace Proiect_IA_V1
             // buttonCol3
             // 
             this.buttonCol3.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol3.Location = new System.Drawing.Point(551, 121);
+            this.buttonCol3.Location = new System.Drawing.Point(301, 66);
+            this.buttonCol3.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol3.Name = "buttonCol3";
-            this.buttonCol3.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol3.Size = new System.Drawing.Size(70, 309);
             this.buttonCol3.TabIndex = 3;
             this.buttonCol3.TabStop = false;
             this.buttonCol3.UseVisualStyleBackColor = false;
@@ -89,9 +93,10 @@ namespace Proiect_IA_V1
             // buttonCol4
             // 
             this.buttonCol4.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol4.Location = new System.Drawing.Point(685, 121);
+            this.buttonCol4.Location = new System.Drawing.Point(374, 66);
+            this.buttonCol4.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol4.Name = "buttonCol4";
-            this.buttonCol4.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol4.Size = new System.Drawing.Size(70, 309);
             this.buttonCol4.TabIndex = 4;
             this.buttonCol4.TabStop = false;
             this.buttonCol4.UseVisualStyleBackColor = false;
@@ -100,9 +105,10 @@ namespace Proiect_IA_V1
             // buttonCol5
             // 
             this.buttonCol5.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol5.Location = new System.Drawing.Point(819, 121);
+            this.buttonCol5.Location = new System.Drawing.Point(447, 66);
+            this.buttonCol5.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol5.Name = "buttonCol5";
-            this.buttonCol5.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol5.Size = new System.Drawing.Size(70, 309);
             this.buttonCol5.TabIndex = 5;
             this.buttonCol5.TabStop = false;
             this.buttonCol5.UseVisualStyleBackColor = false;
@@ -111,9 +117,10 @@ namespace Proiect_IA_V1
             // buttonCol6
             // 
             this.buttonCol6.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCol6.Location = new System.Drawing.Point(953, 121);
+            this.buttonCol6.Location = new System.Drawing.Point(520, 66);
+            this.buttonCol6.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCol6.Name = "buttonCol6";
-            this.buttonCol6.Size = new System.Drawing.Size(128, 571);
+            this.buttonCol6.Size = new System.Drawing.Size(70, 309);
             this.buttonCol6.TabIndex = 6;
             this.buttonCol6.TabStop = false;
             this.buttonCol6.UseVisualStyleBackColor = false;
@@ -122,9 +129,10 @@ namespace Proiect_IA_V1
             // labelTurn
             // 
             this.labelTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTurn.Location = new System.Drawing.Point(503, 42);
+            this.labelTurn.Location = new System.Drawing.Point(274, 23);
+            this.labelTurn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTurn.Name = "labelTurn";
-            this.labelTurn.Size = new System.Drawing.Size(222, 57);
+            this.labelTurn.Size = new System.Drawing.Size(121, 31);
             this.labelTurn.TabIndex = 7;
             this.labelTurn.Text = "Player Turn";
             this.labelTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,20 +140,18 @@ namespace Proiect_IA_V1
             // 
             // timer1
             // 
-            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
             // 
-            this.timer2.Interval = 500;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1224, 730);
+            this.ClientSize = new System.Drawing.Size(668, 395);
             this.Controls.Add(this.labelTurn);
             this.Controls.Add(this.buttonCol6);
             this.Controls.Add(this.buttonCol5);
@@ -154,6 +160,7 @@ namespace Proiect_IA_V1
             this.Controls.Add(this.buttonCol1);
             this.Controls.Add(this.buttonCol3);
             this.Controls.Add(this.buttonCol2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Connect 43";
             this.ResumeLayout(false);
