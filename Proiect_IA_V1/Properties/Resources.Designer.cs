@@ -83,6 +83,16 @@ namespace Proiect_IA_V1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bluePiece90 {
+            get {
+                object obj = ResourceManager.GetObject("bluePiece90", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap redPiece {
             get {
                 object obj = ResourceManager.GetObject("redPiece", resourceCulture);
@@ -103,6 +113,16 @@ namespace Proiect_IA_V1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap redPiece90 {
+            get {
+                object obj = ResourceManager.GetObject("redPiece90", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap yellowPiece {
             get {
                 object obj = ResourceManager.GetObject("yellowPiece", resourceCulture);
@@ -116,6 +136,16 @@ namespace Proiect_IA_V1.Properties {
         internal static System.Drawing.Bitmap yellowPiece50 {
             get {
                 object obj = ResourceManager.GetObject("yellowPiece50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yellowPiece90 {
+            get {
+                object obj = ResourceManager.GetObject("yellowPiece90", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

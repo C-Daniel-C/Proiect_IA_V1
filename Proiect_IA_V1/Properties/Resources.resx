@@ -124,16 +124,25 @@
   <data name="bluePiece50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bluePiece50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bluePiece90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluePiece90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="redPiece" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redPiece.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="redPiece50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redPiece50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="redPiece90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redPiece90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="yellowPiece" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yellowPiece.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yellowPiece50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yellowPiece50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yellowPiece90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellowPiece90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

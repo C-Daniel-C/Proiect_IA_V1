@@ -16,14 +16,17 @@ namespace Proiect_IA_V1
         private static bool stopGame = false;
         List<Bitmap> images;
         List<Button> buttons = new List<Button>();
+        PictureBox[,] pictures = new PictureBox[6, 7];
+        List<Color> teamColors = new List<Color>();
         Board board = new Board();
+        const int imgSize = 90;
         public Form1()
         {
             InitializeComponent();
             images = new List<Bitmap>();
-            images.Add(new Bitmap(Properties.Resources.redPiece50));
-            images.Add(new Bitmap(Properties.Resources.yellowPiece50));
-            images.Add(new Bitmap(Properties.Resources.bluePiece50));
+            images.Add(new Bitmap(Properties.Resources.redPiece90));
+            images.Add(new Bitmap(Properties.Resources.yellowPiece90));
+            images.Add(new Bitmap(Properties.Resources.bluePiece90));
             buttons.Add(buttonCol0);
             buttons.Add(buttonCol1);
             buttons.Add(buttonCol2);
@@ -31,12 +34,15 @@ namespace Proiect_IA_V1
             buttons.Add(buttonCol4);
             buttons.Add(buttonCol5);
             buttons.Add(buttonCol6);
+            teamColors.Add(Color.Red);
+            teamColors.Add(Color.Yellow);
+            teamColors.Add(Color.Blue);
         }
 
 
-        public void ComputeAndRedraw()
+        public void ComputeAndDraw()
         {
-
+   
 
 
             board = Minimax.Minimax2L(board, 0, board.playerTurn);
@@ -46,24 +52,31 @@ namespace Proiect_IA_V1
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             Bitmap MyImage = images[board.newPiece.team];
-            pictureBox1.ClientSize = new Size(50, 50);
+            pictureBox1.ClientSize = new Size(imgSize, imgSize);
             pictureBox1.Image = (Image)MyImage;
             pictureBox1.BackColor = Color.Transparent;
             this.Controls.Add(pictureBox1);
             Button senderBtn = buttons[j];
             Point btnPos = buttons[j].Location;
-            int posX = btnPos.X + (senderBtn.Width - 50) / 2;
-            int posY = btnPos.Y + senderBtn.Height - 50 * (board.heights[j]) - 5;
-            pictureBox1.Location = new Point(posX, posY);
+            int posX = btnPos.X + (senderBtn.Width - imgSize) / 2;
+            int posY = btnPos.Y + senderBtn.Height - imgSize * (board.heights[j]) - 5;
             pictureBox1.BringToFront();
+            pictureBox1.Location = new Point(posX, posY);
+            pictures[5 - i, j] = pictureBox1;
 
-            if (checkWin(board, board.playerTurn))
+            var winningPiecesPositions = CheckWin(board, board.playerTurn);
+            if (winningPiecesPositions != null)
             {
                 stopGame = true;
                 labelTurn.Text = $" {Board.names[board.playerTurn]} won";
                 foreach (Button btn in buttons)
                 {
                     btn.Enabled = false;
+                }
+                foreach ((int, int) pos in winningPiecesPositions)
+                {
+                    pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
+                    Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
             }
             else
@@ -74,6 +87,20 @@ namespace Proiect_IA_V1
 
                 labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
             }
+
+            if(CheckDraw() == true)
+            {
+                labelTurn.Text = "Draw!";
+                return;
+            }
+        }
+        private bool CheckDraw()
+        {
+            for(int i = 0;i<6;i++)
+            {
+                if (board.heights[i] != 6) return false;
+            }
+            return true;
         }
         private void AddPiece(object sender, EventArgs e)
         {
@@ -91,6 +118,7 @@ namespace Proiect_IA_V1
             }
             else
             {
+
                 board = Minimax.Minimax2L(board, 0, board.playerTurn);
 
             }
@@ -98,24 +126,33 @@ namespace Proiect_IA_V1
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             Bitmap MyImage = images[board.playerTurn];
-            pictureBox1.ClientSize = new Size(50, 50);
+            pictureBox1.ClientSize = new Size(imgSize, imgSize);
             pictureBox1.Image = (Image)MyImage;
             pictureBox1.BackColor = Color.Transparent;
             this.Controls.Add(pictureBox1);
             Point btnPos = senderBtn.Location;
-            int posX = btnPos.X + (senderBtn.Width - 50) / 2;
-            int posY = btnPos.Y + senderBtn.Height - 50 * (board.heights[columnNr]) - 5;
-            pictureBox1.Location = new Point(posX, posY);
+            int posX = btnPos.X + (senderBtn.Width - imgSize) / 2;
+            int posY = btnPos.Y + senderBtn.Height - imgSize * (board.heights[columnNr]) - 5;
             pictureBox1.BringToFront();
-            //end UI stuff
+            pictureBox1.Location = new Point(posX, posY);
 
-            if (checkWin(board, board.playerTurn))
+            pictures[xJustAdded, yJustAdded] = pictureBox1;
+
+            //end UI stuff
+            var winningPiecesPositions = CheckWin(board, board.playerTurn);
+            if (winningPiecesPositions != null)
             {
                 stopGame = true;
                 labelTurn.Text = $" {Board.names[board.playerTurn]} won";
                 foreach (Button btn in buttons)
                 {
                     btn.Enabled = false;
+                }
+                foreach ((int, int) pos in winningPiecesPositions)
+                {
+                    pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
+
+                    Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
                 return;
             }
@@ -133,7 +170,7 @@ namespace Proiect_IA_V1
                 btn.Enabled = false;
             }
 
-           
+
             timer1.Start();
 
 
@@ -146,8 +183,8 @@ namespace Proiect_IA_V1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
-            ComputeAndRedraw();
+
+            ComputeAndDraw();
             if (!stopGame)
             {
                 timer2.Start();
@@ -158,7 +195,7 @@ namespace Proiect_IA_V1
         private void timer2_Tick(object sender, EventArgs e)
         {
 
-            ComputeAndRedraw();
+            ComputeAndDraw();
             timer2.Stop();
             if (!stopGame)
             {
@@ -168,15 +205,22 @@ namespace Proiect_IA_V1
                 }
             }
         }
-        private bool checkWin(Board board,int playerTurn)
+        private List<(int, int)> CheckWin(Board board, int playerTurn)
         {
+            List<(int, int)> winningPiecesPositions = new List<(int, int)>();
+
             for (int j = 0; j < 4; j++)
             {
                 for (int i = 0; i < 6; i++)
                 {
+
                     if (board.grid[i, j] == playerTurn && board.grid[i, j + 1] == playerTurn && board.grid[i, j + 2] == playerTurn && board.grid[i, j + 3] == playerTurn)
                     {
-                        return true;
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i, j + 1));
+                        winningPiecesPositions.Add((i, j + 2));
+                        winningPiecesPositions.Add((i, j + 3));
+                        return winningPiecesPositions;
                     }
                 }
             }
@@ -184,34 +228,87 @@ namespace Proiect_IA_V1
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    if (board.grid[i, j] == playerTurn && board.grid[i+1, j] == playerTurn && board.grid[i+2, j] == playerTurn && board.grid[i+3, j] == playerTurn)
+
+                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j] == playerTurn && board.grid[i + 2, j] == playerTurn && board.grid[i + 3, j] == playerTurn)
                     {
-                        return true;
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i + 1, j));
+                        winningPiecesPositions.Add((i + 2, j));
+                        winningPiecesPositions.Add((i + 3, j));
+                        return winningPiecesPositions;
                     }
                 }
+
             }
-            for(int j =0;j<4;j++)
+            for (int j = 0; j < 4; j++)
             {
-                for(int i=0;i<3;i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j+1] == playerTurn && board.grid[i + 2, j+2] == playerTurn && board.grid[i + 3, j+3] == playerTurn)
+
+                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j + 1] == playerTurn && board.grid[i + 2, j + 2] == playerTurn && board.grid[i + 3, j + 3] == playerTurn)
                     {
-                        return true;
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i + 1, j + 1));
+                        winningPiecesPositions.Add((i + 2, j + 2));
+                        winningPiecesPositions.Add((i + 3, j + 3));
+                        return winningPiecesPositions;
                     }
                 }
+
             }
             for (int j = 0; j < 4; j++)
             {
                 for (int i = 3; i < 6; i++)
                 {
+
                     if (board.grid[i, j] == playerTurn && board.grid[i - 1, j + 1] == playerTurn && board.grid[i - 2, j + 2] == playerTurn && board.grid[i - 3, j + 3] == playerTurn)
                     {
-                        return true;
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i - 1, j + 1));
+                        winningPiecesPositions.Add((i - 2, j + 2));
+                        winningPiecesPositions.Add((i - 3, j + 3));
+                        return winningPiecesPositions;
                     }
                 }
+
             }
 
-            return false;
+            return null;
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nivel1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dificultateToolStripMenuItem.Text = "AI level: 1";
+        }
+
+        private void level2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dificultateToolStripMenuItem.Text = "AI level: 2";
+
+        }
+
+        private void levelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dificultateToolStripMenuItem.Text = "AI level: 3";
+
+        }
+
+        private void level4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dificultateToolStripMenuItem.Text = "AI level: 4";
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+
     }
 }
