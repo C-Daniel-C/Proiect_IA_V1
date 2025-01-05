@@ -78,6 +78,7 @@ namespace Proiect_IA_V1
                     pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
                     Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
+                return;
             }
             else
             {
