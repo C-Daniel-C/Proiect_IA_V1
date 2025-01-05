@@ -10,8 +10,18 @@ namespace Proiect_IA_V1
 {
     class Minimax
     {
-        private static int MAX_DEPTH = 3;
+
+        //DIFFICULTY
+
+        public const int EASY = 1;
+        public const int MEDIUM = 2;
+        public const int HARD = 3;
+
+        public static int DIFFICULTY = EASY;
+
+        private static int MAX_DEPTH = 3 * DIFFICULTY;
         private static Random _rand = new Random();
+
         public static Board Minimax2L(Board table, int depth, int ai)
         {
 
@@ -38,7 +48,7 @@ namespace Proiect_IA_V1
                     }
                 }
                 Board nextBoard = new Board();
-                if (depth == 0)
+                if (depth % 3 == 0)
                 {
                     nextBoard.F = -999;
                     foreach (Board move in validMove)
@@ -201,7 +211,7 @@ namespace Proiect_IA_V1
             {
                 if (enemy_pieces[i] == 3 && empty == 1)
                 {
-                    score -= 100;
+                    score -= 3*DIFFICULTY;
                 }
             }
             return score;
