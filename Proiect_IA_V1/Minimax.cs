@@ -16,15 +16,23 @@ namespace Proiect_IA_V1
         public const int EASY = 1;
         public const int MEDIUM = 2;
         public const int HARD = 3;
+        public const int EXTREME = 4;
 
         public static int DIFFICULTY = EASY;
 
-        private static int MAX_DEPTH = 3 * DIFFICULTY;
+        private static int MAX_DEPTH = 2 + DIFFICULTY;
         private static Random _rand = new Random();
 
+
+        public static void setDifficulty(int value)
+        {
+            DIFFICULTY = value;
+            MAX_DEPTH = 2 + DIFFICULTY;
+
+        }
         public static Board Minimax2L(Board table, int depth, int ai)
         {
-
+ 
             if (depth == MAX_DEPTH)
             {
                 EvaluateBoard(table, ai);
@@ -57,12 +65,18 @@ namespace Proiect_IA_V1
                         var tryNextBoard = Minimax2L(move, depth + 1, ai);
                         if (tryNextBoard.F > nextBoard.F)
                         {
-                            nextBoard = move;
+                            if (depth == 0)
+                            {
+                                nextBoard = move;
+                            }
                             nextBoard.F = tryNextBoard.F;
                         }
-                        else if (tryNextBoard.F == nextBoard.F && _rand.Next(100) < 80)
+                        else if (tryNextBoard.F == nextBoard.F && _rand.Next(100) < 50)
                         {
-                            nextBoard = move;
+                            if (depth == 0)
+                            {
+                                nextBoard = move;
+                            }
                             nextBoard.F = tryNextBoard.F;
                         }
                     }
@@ -75,6 +89,10 @@ namespace Proiect_IA_V1
                         move.NextTurn();
                         var tryNextBoard = Minimax2L(move, depth + 1, ai);
                         if (nextBoard.F > tryNextBoard.F)
+                        {
+                            nextBoard.F = tryNextBoard.F;
+                        }
+                        else if (tryNextBoard.F == nextBoard.F && _rand.Next(100) < 50)
                         {
                             nextBoard.F = tryNextBoard.F;
                         }
@@ -211,7 +229,7 @@ namespace Proiect_IA_V1
             {
                 if (enemy_pieces[i] == 3 && empty == 1)
                 {
-                    score -= 3*DIFFICULTY;
+                    score -= 4*DIFFICULTY;
                 }
             }
             return score;
