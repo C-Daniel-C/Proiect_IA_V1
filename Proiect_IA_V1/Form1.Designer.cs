@@ -185,7 +185,7 @@ namespace Proiect_IA_V1
             this.level4ToolStripMenuItem});
             this.dificultateToolStripMenuItem.Name = "dificultateToolStripMenuItem";
             this.dificultateToolStripMenuItem.Size = new System.Drawing.Size(121, 34);
-            this.dificultateToolStripMenuItem.Text = "AI level: 4";
+            this.dificultateToolStripMenuItem.Text = "AI level: 1";
             // 
             // nivel1ToolStripMenuItem
             // 

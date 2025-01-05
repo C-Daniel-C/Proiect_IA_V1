@@ -42,7 +42,7 @@ namespace Proiect_IA_V1
 
         public void ComputeAndDraw()
         {
-   
+
 
 
             board = Minimax.Minimax2L(board, 0, board.playerTurn);
@@ -89,7 +89,7 @@ namespace Proiect_IA_V1
                 labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
             }
 
-            if(CheckDraw() == true)
+            if (CheckDraw() == true)
             {
                 labelTurn.Text = "Draw!";
                 return;
@@ -97,7 +97,7 @@ namespace Proiect_IA_V1
         }
         private bool CheckDraw()
         {
-            for(int i = 0;i<6;i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (board.heights[i] != 6) return false;
             }
@@ -111,18 +111,11 @@ namespace Proiect_IA_V1
             if (board.heights[columnNr] >= 6) return;
             int xJustAdded = 5 - board.heights[columnNr];
             int yJustAdded = columnNr;
-            if (board.playerTurn == 0)
-            {
-                board.grid[xJustAdded, yJustAdded] = board.playerTurn;
-                board.heights[columnNr]++;
-                board.pieces[xJustAdded, yJustAdded] = new Piece(board.playerTurn, xJustAdded, yJustAdded, board.grid);
-            }
-            else
-            {
 
-                board = Minimax.Minimax2L(board, 0, board.playerTurn);
+            board.grid[xJustAdded, yJustAdded] = board.playerTurn;
+            board.heights[columnNr]++;
+            board.pieces[xJustAdded, yJustAdded] = new Piece(board.playerTurn, xJustAdded, yJustAdded, board.grid);
 
-            }
             //UI stuff
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -285,23 +278,27 @@ namespace Proiect_IA_V1
         private void nivel1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 1";
+            Minimax.setDifficulty(1);
         }
 
         private void level2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 2";
+            Minimax.setDifficulty(2);
 
         }
 
         private void levelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 3";
+            Minimax.setDifficulty(3);
 
         }
 
         private void level4ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 4";
+            Minimax.setDifficulty(4);
 
         }
 
@@ -309,7 +306,5 @@ namespace Proiect_IA_V1
         {
             Application.Restart();
         }
-
-
     }
 }
