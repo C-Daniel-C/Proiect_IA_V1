@@ -30,7 +30,7 @@ namespace Proiect_IA_V1
             MAX_DEPTH = 2 + DIFFICULTY;
 
         }
-        public static Board Minimax2L(Board table, int depth, int ai)
+        public static Board Minimax2L(Board table, int depth, int alpha, int beta, int ai)
         {
 
             if (depth == MAX_DEPTH)
@@ -62,23 +62,22 @@ namespace Proiect_IA_V1
                     foreach (Board move in validMove)
                     {
                         move.NextTurn();
-                        var tryNextBoard = Minimax2L(move, depth + 1, ai);
+                        var tryNextBoard = Minimax2L(move, depth + 1, alpha, beta, ai);
                         if (tryNextBoard.F > nextBoard.F)
                         {
                             if (depth == 0)
-                            {
                                 nextBoard = move;
-                            }
                             nextBoard.F = tryNextBoard.F;
                         }
                         else if (tryNextBoard.F == nextBoard.F && _rand.Next(100) < 50)
                         {
                             if (depth == 0)
-                            {
                                 nextBoard = move;
-                            }
                             nextBoard.F = tryNextBoard.F;
                         }
+                        alpha = Math.Max(alpha, nextBoard.F);
+                        if (alpha >= beta)
+                            break;
                     }
                 }
                 else
@@ -87,7 +86,7 @@ namespace Proiect_IA_V1
                     foreach (Board move in validMove)
                     {
                         move.NextTurn();
-                        var tryNextBoard = Minimax2L(move, depth + 1, ai);
+                        var tryNextBoard = Minimax2L(move, depth + 1, alpha, beta, ai);
                         if (nextBoard.F > tryNextBoard.F)
                         {
                             nextBoard.F = tryNextBoard.F;
@@ -96,7 +95,9 @@ namespace Proiect_IA_V1
                         {
                             nextBoard.F = tryNextBoard.F;
                         }
-
+                        beta = Math.Min(beta, nextBoard.F);
+                        if (alpha >= beta)
+                            break;
                     }
                 }
                 nextBoard.playerTurn = ai;
@@ -218,7 +219,7 @@ namespace Proiect_IA_V1
             }
             else if (my_pieces == 3 && empty == 1)
             {
-                score += 5;
+                score += 3;
             }
             else if (my_pieces == 2 && empty == 2)
             {
@@ -229,7 +230,11 @@ namespace Proiect_IA_V1
             {
                 if (enemy_pieces[i] == 3 && empty == 1)
                 {
-                    score -= 4 * DIFFICULTY;
+                    score -= (4 * DIFFICULTY);
+                }
+                else if (enemy_pieces[i] == 4)
+                {
+                    score -= (5 * DIFFICULTY);
                 }
             }
             return score;

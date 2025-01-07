@@ -45,7 +45,7 @@ namespace Proiect_IA_V1
 
 
 
-            board = Minimax.Minimax2L(board, 0, board.playerTurn);
+            board = Minimax.Minimax2L(board, 0, -999, 999, board.playerTurn);
             int i = board.newPiece.x;
             int j = board.newPiece.y;
 
