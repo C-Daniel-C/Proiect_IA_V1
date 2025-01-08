@@ -27,7 +27,7 @@ namespace Proiect_IA_V1
         /// vector ce contine inaltimile pentru fiecare coloana
         /// </summary>
         public int[] heights = new int[7];
-        public bool win = false;
+        public bool win=false;
 
         /// <summary>
         /// lista pieseolor din joc
@@ -41,9 +41,9 @@ namespace Proiect_IA_V1
                 for (int i = 0; i < 6; i++)
                 {
                     this.grid[i, j] = otherObj.grid[i, j];
-
+                   
                 }
-                this.heights[j] = otherObj.heights[j];
+                this.heights[j]= otherObj.heights[j];
             }
         }
         public Board()
@@ -61,32 +61,6 @@ namespace Proiect_IA_V1
                     grid[i, j] = -1;
                 }
             }
-        }
-        //TODO check win
-        //TODO: make piece class 
-        private string CheckWin()
-        {
-            int streak = 1;
-            for (int i = 1; i < 6; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    if (grid[i, j] == grid[i - 1, j] && grid[i, j] != -1)
-                    {
-                        streak++;
-                        if (streak == 4)
-                        {
-                            return "WINNER " + grid[i, j];
-                        }
-                    }
-                    else
-                    {
-                        streak = 1;
-                    }
-                }
-            }
-            return "NO WINNER";
-
         }
 
         public void PrintGrid()
@@ -118,8 +92,6 @@ namespace Proiect_IA_V1
 
         public int NextTurn()
         {
-
-            //Console.WriteLine(CheckWin());
             playerTurn++;
             if (playerTurn >= 3) playerTurn = 0;
             return playerTurn;
