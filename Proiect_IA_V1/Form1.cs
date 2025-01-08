@@ -46,12 +46,12 @@ namespace Proiect_IA_V1
 
 
             board = Minimax.Minimax2L(board, 0, -999, 999, board.playerTurn);
-            int i = board.newPiece.x;
-            int j = board.newPiece.y;
+            int i = board.newPiecePos.Item1;
+            int j = board.newPiecePos.Item2;
 
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            Bitmap MyImage = images[board.newPiece.team];
+            Bitmap MyImage = images[board.playerTurn];
             pictureBox1.ClientSize = new Size(imgSize, imgSize);
             pictureBox1.Image = (Image)MyImage;
             pictureBox1.BackColor = Color.Transparent;
@@ -62,7 +62,7 @@ namespace Proiect_IA_V1
             int posY = btnPos.Y + senderBtn.Height - imgSize * (board.heights[j]) - 5;
             pictureBox1.BringToFront();
             pictureBox1.Location = new Point(posX, posY);
-            pictures[5 - i, j] = pictureBox1;
+            pictures[i, j] = pictureBox1;
 
             var winningPiecesPositions = CheckWin(board, board.playerTurn);
             if (winningPiecesPositions != null)
@@ -76,7 +76,6 @@ namespace Proiect_IA_V1
                 foreach ((int, int) pos in winningPiecesPositions)
                 {
                     pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
-                    Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
                 return;
             }
@@ -114,7 +113,6 @@ namespace Proiect_IA_V1
 
             board.grid[xJustAdded, yJustAdded] = board.playerTurn;
             board.heights[columnNr]++;
-            board.pieces[xJustAdded, yJustAdded] = new Piece(board.playerTurn, xJustAdded, yJustAdded, board.grid);
 
             //UI stuff
             PictureBox pictureBox1 = new PictureBox();
@@ -146,7 +144,6 @@ namespace Proiect_IA_V1
                 {
                     pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
 
-                    Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
                 return;
             }
@@ -155,7 +152,6 @@ namespace Proiect_IA_V1
 
             board.NextTurn();
             board.PrintGrid();
-            Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
 
             labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
 

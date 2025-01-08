@@ -17,7 +17,7 @@ namespace Proiect_IA_V1
         public static Dictionary<int, string> names = new Dictionary<int, string>();
         public int playerTurn = 0;
         public int F = 0;
-
+        public (int, int) newPiecePos;
         /// <summary>
         ///  un joc normal are 6 randuri si 7 coloane
         /// </summary>
@@ -27,15 +27,26 @@ namespace Proiect_IA_V1
         /// vector ce contine inaltimile pentru fiecare coloana
         /// </summary>
         public int[] heights = new int[7];
-        public bool win=false;
+        public bool win = false;
 
         /// <summary>
         /// lista pieseolor din joc
         /// </summary>
-        public Piece[,] pieces = new Piece[6, 7];
-        public Piece newPiece;
 
-        public void GameManagerInit()
+        public Board(Board otherObj)
+        {
+            this.playerTurn = otherObj.playerTurn;
+            for (int j = 0; j < 7; j++)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    this.grid[i, j] = otherObj.grid[i, j];
+
+                }
+                this.heights[j] = otherObj.heights[j];
+            }
+        }
+        public Board()
         {
             if (names.Count == 0)
             {
@@ -50,25 +61,6 @@ namespace Proiect_IA_V1
                     grid[i, j] = -1;
                 }
             }
-        }
-
-        public Board(Board otherObj)
-        {
-            this.playerTurn = otherObj.playerTurn;
-            for (int j = 0; j < 7; j++)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    this.grid[i, j] = otherObj.grid[i, j];
-                    if (otherObj.pieces[i,j] != null)
-                        this.pieces[i, j]= new Piece(otherObj.pieces[i,j].team, i, j, otherObj.grid);
-                }
-                this.heights[j]= otherObj.heights[j];
-            }
-        }
-        public Board()
-        {
-            GameManagerInit();
         }
         //TODO check win
         //TODO: make piece class 
