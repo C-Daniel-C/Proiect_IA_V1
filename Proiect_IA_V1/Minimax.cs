@@ -188,56 +188,77 @@ namespace Proiect_IA_V1
             int my_pieces = 0;
             int empty = 0;
             int score = 0;
-            for (int i = 0; i < 3; i++)
+            int i = 0;
+
+            //P
+            while(i < 3) //C1
             {
-                if (i != ai)
+                if (i != ai) //C2
                 {
-                    enemy_pieces.Add(i, 0);
+                    //P0
+                    enemy_pieces.Add(i, 0); //A0
                 }
+                //P1
+                i++; //A1
+            }
+            //P2
+            i = 0; //A2
+            //P3
+            while(i < line.Count) //C3
+            {
+
+                if (line[i] == ai) //C4
+                {
+                    //P4
+                    my_pieces++; //A3
+                }
+                else if (line[i] == -1) //C5
+                {
+                    //P5
+                    empty++; //A4
+                }
+                else 
+                {
+                    //P6
+                    enemy_pieces[line[i]]++; //A5
+                }
+                //P7
+                i++; //A6
             }
 
-            for (int i = 0; i < line.Count; i++)
-            {
-                if (line[i] == ai)
-                {
-                    my_pieces++;
-                }
-                else if (line[i] == -1)
-                {
-                    empty++;
-                }
-                else
-                {
-                    enemy_pieces[line[i]]++;
-                }
-            }
 
-            if (my_pieces == 4)
+            if (my_pieces == 4) //C6
             {
-                score += 100;
+                //P8
+                score += 100; //A7
 
             }
-            else if (my_pieces == 3 && empty == 1)
+            else if (my_pieces == 3 && empty == 1) //C7
             {
-                score += 3;
+                //P9
+                score += 3; //A8
             }
-            else if (my_pieces == 2 && empty == 2)
+            else if (my_pieces == 2 && empty == 2) //C8
             {
-                score += 2;
+                //P10
+                score += 2; //A9
             }
-
-            foreach (int i in enemy_pieces.Keys)
+            //P11
+            foreach (int j in enemy_pieces.Keys) //C9
             {
-                if (enemy_pieces[i] == 3 && empty == 1)
+                if (enemy_pieces[j] == 3 && empty == 1) //C10
                 {
-                    score -= (4 * DIFFICULTY);
+                    //P12
+                    score -= (4 * DIFFICULTY); //A10
                 }
-                else if (enemy_pieces[i] == 4)
+                else if (enemy_pieces[j] == 4) //C11
                 {
-                    score -= (5 * DIFFICULTY);
+                    //P13
+                    score -= (5 * DIFFICULTY); //A11
                 }
             }
-            return score;
+            //P14
+            return score; //A12
 
         }
 
