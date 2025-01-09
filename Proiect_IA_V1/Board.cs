@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proiect_IA_V1
 {
-    class Board
+    public class Board
     {
         /*
       -1 = camp nepopulat,
@@ -17,7 +17,7 @@ namespace Proiect_IA_V1
         public static Dictionary<int, string> names = new Dictionary<int, string>();
         public int playerTurn = 0;
         public int F = 0;
-
+        public (int, int) newPiecePos;
         /// <summary>
         ///  un joc normal are 6 randuri si 7 coloane
         /// </summary>
@@ -27,30 +27,7 @@ namespace Proiect_IA_V1
         /// vector ce contine inaltimile pentru fiecare coloana
         /// </summary>
         public int[] heights = new int[7];
-        public bool win=false;
 
-        /// <summary>
-        /// lista pieseolor din joc
-        /// </summary>
-        public Piece[,] pieces = new Piece[6, 7];
-        public Piece newPiece;
-
-        public void GameManagerInit()
-        {
-            if (names.Count == 0)
-            {
-                names.Add(0, "Player");
-                names.Add(1, "AI 1");
-                names.Add(2, "AI 2");
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    grid[i, j] = -1;
-                }
-            }
-        }
 
         public Board(Board otherObj)
         {
@@ -60,41 +37,27 @@ namespace Proiect_IA_V1
                 for (int i = 0; i < 6; i++)
                 {
                     this.grid[i, j] = otherObj.grid[i, j];
-                    if (otherObj.pieces[i,j] != null)
-                        this.pieces[i, j]= new Piece(otherObj.pieces[i,j].team, i, j, otherObj.grid);
+
                 }
-                this.heights[j]= otherObj.heights[j];
+                this.heights[j] = otherObj.heights[j];
             }
         }
         public Board()
         {
-            GameManagerInit();
-        }
-        //TODO check win
-        //TODO: make piece class 
-        private string CheckWin()
-        {
-            int streak = 1;
-            for (int i = 1; i < 6; i++)
+            if (names.Count == 0)
+            {
+                names.Add(0, "Player");
+                names.Add(1, "AI 1");
+                names.Add(2, "AI 2");
+            }
+            playerTurn = 0;
+            for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    if (grid[i, j] == grid[i - 1, j] && grid[i, j] != -1)
-                    {
-                        streak++;
-                        if (streak == 4)
-                        {
-                            return "WINNER " + grid[i, j];
-                        }
-                    }
-                    else
-                    {
-                        streak = 1;
-                    }
+                    grid[i, j] = -1;
                 }
             }
-            return "NO WINNER";
-
         }
 
         public void PrintGrid()
@@ -124,10 +87,79 @@ namespace Proiect_IA_V1
 
         }
 
+        public List<(int, int)> CheckWin()
+        {
+            List<(int, int)> winningPiecesPositions = new List<(int, int)>();
+
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i, j + 1] == playerTurn && grid[i, j + 2] == playerTurn && grid[i, j + 3] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i, j + 1));
+                        winningPiecesPositions.Add((i, j + 2));
+                        winningPiecesPositions.Add((i, j + 3));
+                        return winningPiecesPositions;
+                    }
+                }
+            }
+            for (int j = 0; j < 7; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i + 1, j] == playerTurn && grid[i + 2, j] == playerTurn && grid[i + 3, j] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i + 1, j));
+                        winningPiecesPositions.Add((i + 2, j));
+                        winningPiecesPositions.Add((i + 3, j));
+                        return winningPiecesPositions;
+                    }
+                }
+
+            }
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i + 1, j + 1] == playerTurn && grid[i + 2, j + 2] == playerTurn && grid[i + 3, j + 3] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i + 1, j + 1));
+                        winningPiecesPositions.Add((i + 2, j + 2));
+                        winningPiecesPositions.Add((i + 3, j + 3));
+                        return winningPiecesPositions;
+                    }
+                }
+
+            }
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 3; i < 6; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i - 1, j + 1] == playerTurn && grid[i - 2, j + 2] == playerTurn && grid[i - 3, j + 3] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i - 1, j + 1));
+                        winningPiecesPositions.Add((i - 2, j + 2));
+                        winningPiecesPositions.Add((i - 3, j + 3));
+                        return winningPiecesPositions;
+                    }
+                }
+
+            }
+
+            return null;
+        }
+
         public int NextTurn()
         {
-
-            //Console.WriteLine(CheckWin());
             playerTurn++;
             if (playerTurn >= 3) playerTurn = 0;
             return playerTurn;

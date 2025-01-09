@@ -46,12 +46,12 @@ namespace Proiect_IA_V1
 
 
             board = Minimax.Minimax2L(board, 0, -999, 999, board.playerTurn);
-            int i = board.newPiece.x;
-            int j = board.newPiece.y;
+            int i = board.newPiecePos.Item1;
+            int j = board.newPiecePos.Item2;
 
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            Bitmap MyImage = images[board.newPiece.team];
+            Bitmap MyImage = images[board.playerTurn];
             pictureBox1.ClientSize = new Size(imgSize, imgSize);
             pictureBox1.Image = (Image)MyImage;
             pictureBox1.BackColor = Color.Transparent;
@@ -62,9 +62,9 @@ namespace Proiect_IA_V1
             int posY = btnPos.Y + senderBtn.Height - imgSize * (board.heights[j]) - 5;
             pictureBox1.BringToFront();
             pictureBox1.Location = new Point(posX, posY);
-            pictures[5 - i, j] = pictureBox1;
+            pictures[i, j] = pictureBox1;
 
-            var winningPiecesPositions = CheckWin(board, board.playerTurn);
+            var winningPiecesPositions = board.CheckWin();
             if (winningPiecesPositions != null)
             {
                 stopGame = true;
@@ -76,7 +76,6 @@ namespace Proiect_IA_V1
                 foreach ((int, int) pos in winningPiecesPositions)
                 {
                     pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
-                    Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
                 return;
             }
@@ -103,7 +102,7 @@ namespace Proiect_IA_V1
             }
             return true;
         }
-        private void AddPiece(object sender, EventArgs e)
+        public void AddPiece(object sender, EventArgs e)
         {
             Button senderBtn = ((Button)sender);
 
@@ -114,7 +113,6 @@ namespace Proiect_IA_V1
 
             board.grid[xJustAdded, yJustAdded] = board.playerTurn;
             board.heights[columnNr]++;
-            board.pieces[xJustAdded, yJustAdded] = new Piece(board.playerTurn, xJustAdded, yJustAdded, board.grid);
 
             //UI stuff
             PictureBox pictureBox1 = new PictureBox();
@@ -133,7 +131,7 @@ namespace Proiect_IA_V1
             pictures[xJustAdded, yJustAdded] = pictureBox1;
 
             //end UI stuff
-            var winningPiecesPositions = CheckWin(board, board.playerTurn);
+            var winningPiecesPositions = board.CheckWin();
             if (winningPiecesPositions != null)
             {
                 stopGame = true;
@@ -146,16 +144,14 @@ namespace Proiect_IA_V1
                 {
                     pictures[pos.Item1, pos.Item2].BackColor = teamColors[board.playerTurn];
 
-                    Console.WriteLine(board.pieces[pos.Item1, pos.Item2]);
                 }
                 return;
             }
 
 
+            board.PrintGrid();
 
             board.NextTurn();
-            board.PrintGrid();
-            Console.WriteLine(board.pieces[xJustAdded, yJustAdded]);
 
             labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
 
@@ -199,76 +195,7 @@ namespace Proiect_IA_V1
                 }
             }
         }
-        private List<(int, int)> CheckWin(Board board, int playerTurn)
-        {
-            List<(int, int)> winningPiecesPositions = new List<(int, int)>();
 
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i, j + 1] == playerTurn && board.grid[i, j + 2] == playerTurn && board.grid[i, j + 3] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i, j + 1));
-                        winningPiecesPositions.Add((i, j + 2));
-                        winningPiecesPositions.Add((i, j + 3));
-                        return winningPiecesPositions;
-                    }
-                }
-            }
-            for (int j = 0; j < 7; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j] == playerTurn && board.grid[i + 2, j] == playerTurn && board.grid[i + 3, j] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i + 1, j));
-                        winningPiecesPositions.Add((i + 2, j));
-                        winningPiecesPositions.Add((i + 3, j));
-                        return winningPiecesPositions;
-                    }
-                }
-
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j + 1] == playerTurn && board.grid[i + 2, j + 2] == playerTurn && board.grid[i + 3, j + 3] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i + 1, j + 1));
-                        winningPiecesPositions.Add((i + 2, j + 2));
-                        winningPiecesPositions.Add((i + 3, j + 3));
-                        return winningPiecesPositions;
-                    }
-                }
-
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 3; i < 6; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i - 1, j + 1] == playerTurn && board.grid[i - 2, j + 2] == playerTurn && board.grid[i - 3, j + 3] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i - 1, j + 1));
-                        winningPiecesPositions.Add((i - 2, j + 2));
-                        winningPiecesPositions.Add((i - 3, j + 3));
-                        return winningPiecesPositions;
-                    }
-                }
-
-            }
-
-            return null;
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {

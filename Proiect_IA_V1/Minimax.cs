@@ -49,8 +49,8 @@ namespace Proiect_IA_V1
                         Board newManager = new Board(table);
                         var cursorX = 5 - table.heights[i];
                         newManager.grid[cursorX, i] = table.playerTurn;
-                        newManager.pieces[cursorX, i] = new Piece(table.playerTurn, table.heights[i], i, table.grid);
-                        newManager.newPiece = newManager.pieces[cursorX, i];
+                        newManager.newPiecePos.Item1 = cursorX;
+                        newManager.newPiecePos.Item2 = i;
                         newManager.heights[i]++;
                         validMove.Add(newManager);
                     }
