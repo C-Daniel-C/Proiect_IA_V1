@@ -59,34 +59,46 @@ namespace Proiect_IA_V1
                 }
             }
         }
-
-        public void PrintGrid()
+        public override string ToString()
         {
+            string res = "";
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
                     if (grid[i, j] == -1)
-                        Console.Write($". ");
+                        res+=($". ");
                     else
-                        Console.Write($"{grid[i, j]} ");
+                        res+=($"{grid[i, j]} ");
 
                 }
-                Console.Write("\n");
+                res+=("\n");
             }
             for (int i = 0; i < 7; i++)
-                Console.Write($"- ");
-            Console.Write("\n");
+                res +=($"- ");
+            res += ("\n");
 
             for (int i = 0; i < 7; i++)
-                Console.Write($"{heights[i]} ");
-            Console.Write("<- Heights");
+                res += ($"{heights[i]} ");
+            res += ("<- Heights");
 
-            Console.Write("\n");
+            res += ("\n");
+            return res;
+        }
+        public void PrintGrid()
+        {
+            Console.WriteLine(this);
 
 
         }
-
+        public bool CheckDraw()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (heights[i] != 6) return false;
+            }
+            return true;
+        }
         public List<(int, int)> CheckWin()
         {
             List<(int, int)> winningPiecesPositions = new List<(int, int)>();

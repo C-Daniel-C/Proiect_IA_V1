@@ -14,11 +14,11 @@ namespace Proiect_IA_V1
     public partial class Form1 : Form
     {
         private static bool stopGame = false;
-        List<Bitmap> images;
-        List<Button> buttons = new List<Button>();
-        PictureBox[,] pictures = new PictureBox[6, 7];
-        List<Color> teamColors = new List<Color>();
-        Board board = new Board();
+        public List<Bitmap> images;
+        public List<Button> buttons = new List<Button>();
+        public PictureBox[,] pictures = new PictureBox[6, 7];
+        public List<Color> teamColors = new List<Color>();
+        public Board board = new Board();
         const int imgSize = 90;
         public Form1()
         {
@@ -88,20 +88,13 @@ namespace Proiect_IA_V1
                 labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
             }
 
-            if (CheckDraw() == true)
+            if (board.CheckDraw() == true)
             {
                 labelTurn.Text = "Draw!";
                 return;
             }
         }
-        private bool CheckDraw()
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                if (board.heights[i] != 6) return false;
-            }
-            return true;
-        }
+        
         public void AddPiece(object sender, EventArgs e)
         {
             Button senderBtn = ((Button)sender);
@@ -202,27 +195,27 @@ namespace Proiect_IA_V1
 
         }
 
-        private void nivel1ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void nivel1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 1";
             Minimax.setDifficulty(1);
         }
 
-        private void level2ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void level2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 2";
             Minimax.setDifficulty(2);
 
         }
 
-        private void levelToolStripMenuItem_Click(object sender, EventArgs e)
+        public void levelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 3";
             Minimax.setDifficulty(3);
 
         }
 
-        private void level4ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void level4ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dificultateToolStripMenuItem.Text = "AI level: 4";
             Minimax.setDifficulty(4);

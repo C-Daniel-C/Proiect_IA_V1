@@ -8,7 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Proiect_IA_V1
 {
-    class Minimax
+    public class Minimax
     {
 
         //DIFFICULTY
