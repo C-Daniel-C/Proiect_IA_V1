@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proiect_IA_V1
 {
-    class Board
+    public class Board
     {
         /*
       -1 = camp nepopulat,
@@ -27,11 +27,7 @@ namespace Proiect_IA_V1
         /// vector ce contine inaltimile pentru fiecare coloana
         /// </summary>
         public int[] heights = new int[7];
-        public bool win=false;
 
-        /// <summary>
-        /// lista pieseolor din joc
-        /// </summary>
 
         public Board(Board otherObj)
         {
@@ -41,9 +37,9 @@ namespace Proiect_IA_V1
                 for (int i = 0; i < 6; i++)
                 {
                     this.grid[i, j] = otherObj.grid[i, j];
-                   
+
                 }
-                this.heights[j]= otherObj.heights[j];
+                this.heights[j] = otherObj.heights[j];
             }
         }
         public Board()
@@ -54,6 +50,7 @@ namespace Proiect_IA_V1
                 names.Add(1, "AI 1");
                 names.Add(2, "AI 2");
             }
+            playerTurn = 0;
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -88,6 +85,77 @@ namespace Proiect_IA_V1
             Console.Write("\n");
 
 
+        }
+
+        public List<(int, int)> CheckWin()
+        {
+            List<(int, int)> winningPiecesPositions = new List<(int, int)>();
+
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i, j + 1] == playerTurn && grid[i, j + 2] == playerTurn && grid[i, j + 3] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i, j + 1));
+                        winningPiecesPositions.Add((i, j + 2));
+                        winningPiecesPositions.Add((i, j + 3));
+                        return winningPiecesPositions;
+                    }
+                }
+            }
+            for (int j = 0; j < 7; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i + 1, j] == playerTurn && grid[i + 2, j] == playerTurn && grid[i + 3, j] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i + 1, j));
+                        winningPiecesPositions.Add((i + 2, j));
+                        winningPiecesPositions.Add((i + 3, j));
+                        return winningPiecesPositions;
+                    }
+                }
+
+            }
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i + 1, j + 1] == playerTurn && grid[i + 2, j + 2] == playerTurn && grid[i + 3, j + 3] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i + 1, j + 1));
+                        winningPiecesPositions.Add((i + 2, j + 2));
+                        winningPiecesPositions.Add((i + 3, j + 3));
+                        return winningPiecesPositions;
+                    }
+                }
+
+            }
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 3; i < 6; i++)
+                {
+
+                    if (grid[i, j] == playerTurn && grid[i - 1, j + 1] == playerTurn && grid[i - 2, j + 2] == playerTurn && grid[i - 3, j + 3] == playerTurn)
+                    {
+                        winningPiecesPositions.Add((i, j));
+                        winningPiecesPositions.Add((i - 1, j + 1));
+                        winningPiecesPositions.Add((i - 2, j + 2));
+                        winningPiecesPositions.Add((i - 3, j + 3));
+                        return winningPiecesPositions;
+                    }
+                }
+
+            }
+
+            return null;
         }
 
         public int NextTurn()

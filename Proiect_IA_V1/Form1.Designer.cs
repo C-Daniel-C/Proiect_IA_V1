@@ -54,7 +54,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol0.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol0.Location = new System.Drawing.Point(149, 122);
-            this.buttonCol0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol0.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol0.Name = "buttonCol0";
             this.buttonCol0.Size = new System.Drawing.Size(128, 570);
             this.buttonCol0.TabIndex = 0;
@@ -66,7 +66,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol1.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol1.Location = new System.Drawing.Point(282, 122);
-            this.buttonCol1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol1.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol1.Name = "buttonCol1";
             this.buttonCol1.Size = new System.Drawing.Size(128, 570);
             this.buttonCol1.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol2.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol2.Location = new System.Drawing.Point(416, 122);
-            this.buttonCol2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol2.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol2.Name = "buttonCol2";
             this.buttonCol2.Size = new System.Drawing.Size(128, 570);
             this.buttonCol2.TabIndex = 2;
@@ -90,7 +90,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol3.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol3.Location = new System.Drawing.Point(552, 122);
-            this.buttonCol3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol3.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol3.Name = "buttonCol3";
             this.buttonCol3.Size = new System.Drawing.Size(128, 570);
             this.buttonCol3.TabIndex = 3;
@@ -102,7 +102,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol4.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol4.Location = new System.Drawing.Point(686, 122);
-            this.buttonCol4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol4.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol4.Name = "buttonCol4";
             this.buttonCol4.Size = new System.Drawing.Size(128, 570);
             this.buttonCol4.TabIndex = 4;
@@ -114,7 +114,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol5.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol5.Location = new System.Drawing.Point(820, 122);
-            this.buttonCol5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol5.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol5.Name = "buttonCol5";
             this.buttonCol5.Size = new System.Drawing.Size(128, 570);
             this.buttonCol5.TabIndex = 5;
@@ -126,7 +126,7 @@ namespace Proiect_IA_V1
             // 
             this.buttonCol6.BackColor = System.Drawing.Color.Transparent;
             this.buttonCol6.Location = new System.Drawing.Point(953, 122);
-            this.buttonCol6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCol6.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCol6.Name = "buttonCol6";
             this.buttonCol6.Size = new System.Drawing.Size(128, 570);
             this.buttonCol6.TabIndex = 6;
@@ -164,8 +164,7 @@ namespace Proiect_IA_V1
             this.dificultateToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1225, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 42);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -231,7 +230,7 @@ namespace Proiect_IA_V1
             this.Controls.Add(this.buttonCol2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Connect 43";
             this.Load += new System.EventHandler(this.Form1_Load);

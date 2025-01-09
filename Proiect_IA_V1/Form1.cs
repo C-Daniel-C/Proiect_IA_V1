@@ -64,7 +64,7 @@ namespace Proiect_IA_V1
             pictureBox1.Location = new Point(posX, posY);
             pictures[i, j] = pictureBox1;
 
-            var winningPiecesPositions = CheckWin(board, board.playerTurn);
+            var winningPiecesPositions = board.CheckWin();
             if (winningPiecesPositions != null)
             {
                 stopGame = true;
@@ -102,7 +102,7 @@ namespace Proiect_IA_V1
             }
             return true;
         }
-        private void AddPiece(object sender, EventArgs e)
+        public void AddPiece(object sender, EventArgs e)
         {
             Button senderBtn = ((Button)sender);
 
@@ -131,7 +131,7 @@ namespace Proiect_IA_V1
             pictures[xJustAdded, yJustAdded] = pictureBox1;
 
             //end UI stuff
-            var winningPiecesPositions = CheckWin(board, board.playerTurn);
+            var winningPiecesPositions = board.CheckWin();
             if (winningPiecesPositions != null)
             {
                 stopGame = true;
@@ -149,9 +149,9 @@ namespace Proiect_IA_V1
             }
 
 
+            board.PrintGrid();
 
             board.NextTurn();
-            board.PrintGrid();
 
             labelTurn.Text = $" {Board.names[board.playerTurn]} Turn ";
 
@@ -195,76 +195,7 @@ namespace Proiect_IA_V1
                 }
             }
         }
-        private List<(int, int)> CheckWin(Board board, int playerTurn)
-        {
-            List<(int, int)> winningPiecesPositions = new List<(int, int)>();
 
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i, j + 1] == playerTurn && board.grid[i, j + 2] == playerTurn && board.grid[i, j + 3] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i, j + 1));
-                        winningPiecesPositions.Add((i, j + 2));
-                        winningPiecesPositions.Add((i, j + 3));
-                        return winningPiecesPositions;
-                    }
-                }
-            }
-            for (int j = 0; j < 7; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j] == playerTurn && board.grid[i + 2, j] == playerTurn && board.grid[i + 3, j] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i + 1, j));
-                        winningPiecesPositions.Add((i + 2, j));
-                        winningPiecesPositions.Add((i + 3, j));
-                        return winningPiecesPositions;
-                    }
-                }
-
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i + 1, j + 1] == playerTurn && board.grid[i + 2, j + 2] == playerTurn && board.grid[i + 3, j + 3] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i + 1, j + 1));
-                        winningPiecesPositions.Add((i + 2, j + 2));
-                        winningPiecesPositions.Add((i + 3, j + 3));
-                        return winningPiecesPositions;
-                    }
-                }
-
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 3; i < 6; i++)
-                {
-
-                    if (board.grid[i, j] == playerTurn && board.grid[i - 1, j + 1] == playerTurn && board.grid[i - 2, j + 2] == playerTurn && board.grid[i - 3, j + 3] == playerTurn)
-                    {
-                        winningPiecesPositions.Add((i, j));
-                        winningPiecesPositions.Add((i - 1, j + 1));
-                        winningPiecesPositions.Add((i - 2, j + 2));
-                        winningPiecesPositions.Add((i - 3, j + 3));
-                        return winningPiecesPositions;
-                    }
-                }
-
-            }
-
-            return null;
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
